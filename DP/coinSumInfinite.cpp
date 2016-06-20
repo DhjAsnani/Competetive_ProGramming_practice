@@ -37,10 +37,34 @@ int solution2(int S[],int n,int m)
 	}
 	return table[n]%mod;
 }
+int Solution(vector<int> &A, int B) {
+    int mod = 1000007;
+	int table[B+1];
+	memset(table,0,sizeof(table));
+	table[0] = 1;
+	int n = B;
+	int m = A.size();
+	
+	for(int i=0;i<m;i++)
+		for(int j=A[i];j<n+1;j++)
+		{
+		
+		{ table[j] = table[j] + table[j-A[i]];
+		table[j]%=mod;
+	
+		}
+		
+	}
+	return table[n]%mod;
+}
 int main()
 {
-	int S[]={1,3,2};
-	cout<<solution2(S,4,3);
+//	int S[]={1,3,2};
+	vector<int> S;
+	S.push_back(1);
+	S.push_back(2);
+	S.push_back(3);
+	cout<<Solution(S,4);
 }
 
 
