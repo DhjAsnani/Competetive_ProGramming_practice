@@ -1,0 +1,7 @@
+AMAZING TRICK
+
+if you wanted to find the number of ways to form a Number N with {x1,x2,x3,..........xk}
+
+count[i] = count[i-x1] + count[i-x2] + count[i-x3] + ........................... + count[i-xk]
+
+return count[N];
