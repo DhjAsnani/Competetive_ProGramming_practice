@@ -61,9 +61,12 @@ int main()
 {
 //	int S[]={1,3,2};
 	vector<int> S;
-	S.push_back(1);
+	
 	S.push_back(2);
-	S.push_back(3);
+	
+	S.push_back(2);
+	S.push_back(5);
+	
 	cout<<Solution(S,4);
 }
 
