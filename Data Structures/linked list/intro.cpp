@@ -96,6 +96,24 @@ void delFromPosition(node **head_ref,int pos)
 	prev->next = tmp->next;
 	delete(tmp);
 }
+int len(node **head_ref)
+{
+	node* tmp = *head_ref;
+	int len = 0;
+	while(tmp!=NULL)
+	{
+		len++;
+		tmp=tmp->next;
+	}
+	return len;
+}
+int lenRec(node* head)
+{
+		
+	if(head==NULL)
+		return 0;
+	else return 1+lenRec(head->next);
+}
 int main()
 {
 	node *head = NULL;
@@ -103,10 +121,13 @@ int main()
 	inbeginning(&head,4);
 	inEnd(&head,3);
 	inbeginning(&head,2);
+	inbeginning(&head,21);
+	inbeginning(&head,22);
 	inbeginning(&head,1);
 	after_some(&head,3,8);
 	delete_ll(&head,3);
 	delFromPosition(&head,4);
 	printList(head);
+	cout<<"\n"<<len(&head)<<" "<<lenRec(head);
 	
 }
