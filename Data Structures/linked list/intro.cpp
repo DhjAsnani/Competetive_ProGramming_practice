@@ -114,6 +114,25 @@ int lenRec(node* head)
 		return 0;
 	else return 1+lenRec(head->next);
 }
+void swapp(node **head_ref,int a,int b)
+{
+	node *s1=*head_ref,*s1prev=NULL,*s2=*head_ref,*s2prev=NULL,*tmp;
+	while(s1->data!=a&&s1!=NULL)
+	{
+		s1prev = s1;
+		s1=s1->next;
+	}
+	while(s2->data!=b&&s2!=NULL)
+	{
+		s2prev = s2;
+		s2=s2->next;
+	}
+	tmp = s2->next;
+	s1prev->next = s2;
+	s2->next = s1->next;
+	s2prev->next = s1;
+	s1->next=tmp;
+}
 int main()
 {
 	node *head = NULL;
@@ -127,6 +146,7 @@ int main()
 	after_some(&head,3,8);
 	delete_ll(&head,3);
 	delFromPosition(&head,4);
+	swapp(&head,21,4);
 	printList(head);
 	cout<<"\n"<<len(&head)<<" "<<lenRec(head);
 	
