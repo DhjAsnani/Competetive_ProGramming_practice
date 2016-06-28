@@ -59,6 +59,24 @@ void printList( node *node)
      node = node->next;
   }
 }
+void delete_ll(node **head_ref,int key)
+{
+	node *tmp = *head_ref,*prev;
+	if(tmp != NULL && tmp->data == key)
+	{
+		*head_ref = tmp->next;
+		delete(tmp);
+		return ;
+	}	
+	while(tmp!=NULL&&tmp->data!=key)
+	{
+		prev = tmp;
+		tmp = tmp->next;
+	}
+	if(tmp==NULL) return;
+	prev->next=tmp->next;
+	delete(tmp);
+}
 int main()
 {
 	node *head = NULL;
@@ -68,6 +86,7 @@ int main()
 	inbeginning(&head,2);
 	inbeginning(&head,1);
 	after_some(&head,3,8);
+	delete_ll(&head,3);
 	printList(head);
 	
 }
