@@ -133,6 +133,18 @@ void swapp(node **head_ref,int a,int b)
 	s2prev->next = s1;
 	s1->next=tmp;
 }
+void reverse(node **head)
+{
+	node *next,*prev=NULL,*curr = *head;
+	while(curr!=NULL)
+	{
+		next = curr->next;
+		curr->next = prev;
+		prev=curr;
+		curr = next;
+	}
+	*head = prev;
+}
 int main()
 {
 	node *head = NULL;
@@ -149,5 +161,9 @@ int main()
 	swapp(&head,21,4);
 	printList(head);
 	cout<<"\n"<<len(&head)<<" "<<lenRec(head);
+	//printhead(&head);
+	cout<<"\n";
+	reverse(&head);
+	printList(head);
 	
 }
