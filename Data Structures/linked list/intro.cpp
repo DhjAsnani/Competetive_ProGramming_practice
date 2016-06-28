@@ -154,20 +154,36 @@ void recursiveReverse(node **head)
 	r = f->next;
 	if(r==NULL)return ;
 	recursiveReverse(&r);
-	r->next = f;
+	f->next->next = f;
 	f->next = NULL;
 	*head = r;
+	
+}
+int checkLoop(node **head)
+{
+	node *slow = *head,*fast = *head;
+	while(slow&&fast&&fast->next)
+	{
+		slow = slow->next;
+		fast = fast->next->next;
+		if(slow == fast)
+		{
+			cout<<"Loop\n";
+			return 0;
+		}
+	}
 	
 }
 int main()
 {
 	node *head = NULL;
-	inbeginning(&head,5);
+	inbeginning(&head,20);
 	inbeginning(&head,4);
-	inEnd(&head,3);
-	inbeginning(&head,2);
-	inbeginning(&head,21);
-	inbeginning(&head,22);
+	
+	inbeginning(&head,15);
+	inbeginning(&head,10);
+	head->next->next->next->next = head;
+/*	inbeginning(&head,22);
 	inbeginning(&head,1);
 	after_some(&head,3,8);
 	delete_ll(&head,3);
@@ -179,6 +195,7 @@ int main()
 	cout<<"\n";
 	reverse(&head);
 	recursiveReverse(&head);
-	printList(head);
+	printList(head);*/
+	checkLoop(&head);
 	
 }
