@@ -1,3 +1,4 @@
+// src linked list by geeksforgeeks.org
 #include<bits/stdc++.h>
 using namespace std;
 struct node
@@ -77,6 +78,24 @@ void delete_ll(node **head_ref,int key)
 	prev->next=tmp->next;
 	delete(tmp);
 }
+void delFromPosition(node **head_ref,int pos)
+{
+	node *tmp = *head_ref,*prev;
+	if(pos==1)
+	{
+		*head_ref = tmp->next;
+		delete(tmp);
+		return ;
+	}
+	for(int i=0;i<pos-1;i++)
+	{
+		prev = tmp;
+		tmp = tmp->next;
+	}
+	if(tmp==NULL) return;
+	prev->next = tmp->next;
+	delete(tmp);
+}
 int main()
 {
 	node *head = NULL;
@@ -87,6 +106,7 @@ int main()
 	inbeginning(&head,1);
 	after_some(&head,3,8);
 	delete_ll(&head,3);
+	delFromPosition(&head,4);
 	printList(head);
 	
 }
