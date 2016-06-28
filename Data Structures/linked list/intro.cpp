@@ -145,6 +145,20 @@ void reverse(node **head)
 	}
 	*head = prev;
 }
+void recursiveReverse(node **head)
+{
+	node* f;
+	node* r;
+	if(*head == NULL)return;
+	f = *head;
+	r = f->next;
+	if(r==NULL)return ;
+	recursiveReverse(&r);
+	r->next = f;
+	f->next = NULL;
+	*head = r;
+	
+}
 int main()
 {
 	node *head = NULL;
@@ -164,6 +178,7 @@ int main()
 	//printhead(&head);
 	cout<<"\n";
 	reverse(&head);
+	recursiveReverse(&head);
 	printList(head);
 	
 }
