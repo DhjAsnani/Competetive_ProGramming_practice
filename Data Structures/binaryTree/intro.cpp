@@ -1,4 +1,5 @@
 #include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 struct node
 {
@@ -42,6 +43,55 @@ void postorder(node *root)
 	postorder(root->r);
 	cout<<root->data;
 }
+void bfs(node *root)
+{
+	
+	queue<node*> s;
+	s.push(root);
+	while(!s.empty())
+	{
+		
+		node *tmp = s.front();
+		cout<<tmp->data;
+		s.pop();
+		
+		if(tmp->l)
+		{
+			s.push(tmp->l);
+		}
+			if(tmp->r)
+		{
+			s.push(tmp->r);
+		}
+	
+		
+	}
+}
+void dfs(node *root)
+{
+	
+	stack<node*> s;
+	s.push(root);
+	while(!s.empty())
+	{
+		
+		node *tmp = s.top();
+		cout<<tmp->data;
+		s.pop();
+		
+			if(tmp->r)
+		{
+			s.push(tmp->r);
+		}
+	
+		if(tmp->l)
+		{
+			s.push(tmp->l);
+		}
+		
+		
+	}
+}
 int main()
 {
 	node *root = newNode(1);
@@ -56,5 +106,9 @@ int main()
 	preorder(root);
 	cout<<"\n";
 	postorder(root);
+	cout<<"\n";
+	bfs(root);
+	cout<<"\n";
+	dfs(root);
 
 }
