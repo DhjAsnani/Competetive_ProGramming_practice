@@ -98,6 +98,23 @@ int height(node *root)
 	if(root==NULL)return 0;
 	else return 1 + max(height(root->l),height(root->r));
 }
+int diameter(node *root)
+{
+	if(root==NULL) return 0;
+	int hl = height(root->l);
+	int hr = height(root->r);
+	int dl = diameter(root->l);
+	int dr = diameter(root->r);
+	return max(hl+hr+1,max(dl,dr));
+	
+	
+}
+int width(node *tree,int level)
+{
+	if(tree==NULL)return 0;
+	if(level == 1)return 1;
+	else return width(tree->l,level-1) + width(tree->r,level-1);
+}
 int main()
 {
 	node *root = newNode(1);
@@ -118,5 +135,7 @@ int main()
 	cout<<"\n";
 	dfs(root);
 	cout<<"\n"<<height(root)<<"\n";
+	cout<<diameter(root)<<"\n";
+	cout<<width(root,3);
 
 }
