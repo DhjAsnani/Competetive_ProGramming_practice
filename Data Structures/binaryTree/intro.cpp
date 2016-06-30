@@ -82,6 +82,7 @@ void dfs(node *root)
 			if(tmp->r)
 		{
 			s.push(tmp->r);
+			
 		}
 	
 		if(tmp->l)
@@ -92,6 +93,11 @@ void dfs(node *root)
 		
 	}
 }
+int height(node *root)
+{
+	if(root==NULL)return 0;
+	else return 1 + max(height(root->l),height(root->r));
+}
 int main()
 {
 	node *root = newNode(1);
@@ -101,6 +107,7 @@ int main()
 	root->l->r = newNode(5);
 	root->r->l = newNode(6);
 	root->r->r = newNode(7);
+	root->r->r->r =newNode(8);
 	inorder(root);
 	cout<<"\n";
 	preorder(root);
@@ -110,5 +117,6 @@ int main()
 	bfs(root);
 	cout<<"\n";
 	dfs(root);
+	cout<<"\n"<<height(root)<<"\n";
 
 }
